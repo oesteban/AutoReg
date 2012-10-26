@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#cases_paths=$(ls -d $1)
+
+#cases_ids=$(ls -d $1 | sed -e 's/^.*\([0-9]\{3\}\)$/\1/' )
+
+for path in $@
+   do
+
+   if [ $path = ${@:${#@}} ]; then
+      break 
+   fi
+
+   patientName=$( basename $path )   
+   patientId=$( basename $path | sed -e 's/^.*\([0-9]\{1,2\}\)$/\1/' )
+
+
+   if [ -d "$path" ]; then
+       resultFolder="${@:${#@}}/$patientId"
+
+       if [ ! -d "$resultFolder" ]; then
+         mkdir -p "$resultFolder"
+       fi
+    
+       fixedFileName=$(ls $path/*.hdr | grep -i 'rm' | grep -iv 'mask') 
+       movingFileName=$(ls $path/*.hdr | grep -iv 'rm')
+       maskFileName=$(ls $path/*.hdr | grep -i 'rm'| grep -i 'mask' )
+
+       logFile=$resultFolder/log_script.txt
+
+       echo "./autoreg \"$fixedFileName\" \"$movingFileName\" \"$maskFileName\" \"$resultFolder/\" >> \"$logFile\"
+   fi
+done

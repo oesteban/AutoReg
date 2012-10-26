@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#cases_paths=$(ls -d $1)
+
+#cases_ids=$(ls -d $1 | sed -e 's/^.*\([0-9]\{3\}\)$/\1/' )
+
+for path in $@
+   do
+
+   if [ $path = ${@:${#@}} ]; then
+      break 
+   fi
+
+   patientName=$( basename $path )   
+   patientId=$( basename $path | sed -e 's/^.*\([0-9]\{3\}\)$/\1/' )
+
+
+   if [ -d "$path" ]; then
+       resultFolder="${@:${#@}}/$patientId"
+
+       if [ ! -d "$resultFolder" ]; then
+         mkdir -p "$resultFolder"
+       fi
+    
+       mri_name=$(ls "$path/" | grep -i 'mr' | grep -iv 'mask') 
+       bas_name=$(ls "$path/" | grep -iv 'mr')
+
+       for fixedImage in $mri_name  
+       do
+	   for movingImage in $bas_name 
+           do
+              modalities="${movingImage}-to-${fixedImage}"
+              if [ ! -d "$resultFolder/$modalities" ]; then
+                 mkdir -p "$resultFolder/$modalities"
+              fi
+              if [ ! -d "${@:${#@}}/transforms" ]; then
+                 mkdir -p "${@:${#@}}/transforms"
+              fi
+
+	      transformFile=${@:${#@}}/transforms/transform_${patientId}_${modalities}.txt
+              logFile=$resultFolder/$modalities/log_script.txt
+
+              ./autoreg-rire "$path/$fixedImage/patient_${patientId}_$fixedImage.mhd" "$path/$movingImage/patient_${patientId}_$movingImage.mhd" "" "$resultFolder/$modalities/" >> "$logFile"
+
+
+	      echo "-----------------------------------------------------------------------------------" > "$transformFile"
+              echo "Transformation Parameters" >> "$transformFile"
+              echo "" >>  "$transformFile"
+              echo "Investigator(s): Esteban, Oscar" >> "$transformFile"
+              echo "Site: Biomedical Image Technologies, Universidad Politecnica de Madrid, Madrid, Spain" >> "$transformFile"
+              echo "Method: FocusDET non-adaptative method" >> "$transformFile"
+              echo "Date: $(LC_TIME=en_US date +%d\ %B\ %Y)" >> "$transformFile"
+              echo "Patient number: $patientId" >> "$transformFile"
+              echo "From: $movingImage" >> "$transformFile"
+              echo "To: $fixedImage" >> "$transformFile"
+              echo "Point      x          y          z        new_x       new_y       new_z" >> "$transformFile"
+
+	      ./transform-points "$resultFolder/$modalities/tforms.txt" "$path/$movingImage/patient_${patientId}_$movingImage.mhd" >> "$transformFile"
+              echo "" >> "$transformFile" 
+	      echo "(All distances are in millimeters.)" >> "$transformFile"
+	      echo "-------------------------------------------------------------------------" >> "$transformFile"
+	   done          
+       done
+   fi
+done

@@ -1,0 +1,34 @@
+#!/bin/bash
+# Example command
+# smooth=(0.0 0.2 0.5 0.8 1.0 1.5 2.0 3.0 4.0); for p in ${smooth[@]}; do command="autoreg_test_smoothing sim/ ./results/20110427-autoreg-smoothing/ $p"; echo $command; done;
+
+
+simulations_path=$(readlink -f $1)
+out_path=${2%/}
+sim_flds=$(find -L "$simulations_path" -name "*.hdr" -exec dirname "{}" \; | sort -u)
+i=$3
+
+#sm=( 0.0 0.2 0.5 0.8 1.0 1.5 2.0 3.0 4.0 )
+
+for sim_set in $sim_flds; do
+#    simulations_path_escaped=$( echo $simulations_path | sed 's/\([\/\+\-]\)/\\\1/g' )
+#    output_fld=$out_path/$( echo "$sim_set" | sed -e "s/$simulations_path_escaped\///" )
+
+    sim_subset=${sim_set#$simulations_path}
+
+    if [ -n "$sim_subset" ]; then
+	if [ ${sim_subset:0:1} = '/' ];  then
+          sim_subset=${sim_subset:1}
+	fi
+    fi
+
+    output_fld=$out_path/$sim_subset
+    
+#    for i in ${sm[@]}; do 
+        test_out=${output_fld%/}/smooth_$i
+	
+    	eval "mkdir -p $test_out";
+    	eval "autoreg_testall RMs/ $sim_set msk/ $test_out -g $i";
+	eval "test_total_errors \"$sim_set\" RMs/ les/ msk/ tfm/interictals.tfm tfm/ictals.tfm tfm/register.tfm \"$test_out/transforms.tfm\" \"$test_out\""
+#    done;
+done;

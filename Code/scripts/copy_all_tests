@@ -1,0 +1,1 @@
+for file in $(find . -name *RE.txt); do err=$( echo $file | sed -e 's/.*\(LRE\|TRE\).*/\1/' ); typ=$(echo $file | sed -e 's/.*\(smooth\|samples\).*/\1/'); rec=$( echo $file | sed -e 's/.*\(FBP\|OSEM\).*/\1/' ); val=$( echo $file | sed -e 's/.*\([0-9]\.[0-9]\).*/\1/' ); eval "cp $file ./${err}_${typ}_${rec}_${val}.txt"; done;

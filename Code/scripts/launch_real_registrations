@@ -1,0 +1,29 @@
+#!/bin/bash
+
+images_path=${1%/}
+results_path=${2%/}
+
+cases_ids=$(ls "$images_path" | sed -n '/^[0-9]\{3\}/p' | sed -e 's/^\([0-9]\{3\}\).*$/\1/' )
+
+
+for a in $cases_ids
+  do
+#for i in $(seq 0 $((${#case_ids[*]} - 1))); do
+   path=$(ls -d $images_path/${a}*)
+
+   if [ -d "$path" ]; then
+
+       if [ ! -d "$results_path/$a" ]; then
+         mkdir -p "$results_path/$a"
+       fi
+    
+       mri_name=$(ls "$path/" | grep -i 'mri' | grep -iv 'mask')
+       mask_name=$(ls "$path/" | grep -i 'mri' | grep -i 'mask')
+       bas_name=$(ls "$path/" | grep -i 'interictal')
+
+       log_file="$results_path/launch_real_registrations.log"
+
+       eval "echo \"Case $a:\" >>  \"$log_file\""
+       /usr/bin/time eval "./autoreg \"$path/$mri_name\" \"$path/$bas_name\" \"$path/$mask_name\" \"$2/$a/\" >> \"$log_file\"" -o "$log_file" -a
+   fi
+done

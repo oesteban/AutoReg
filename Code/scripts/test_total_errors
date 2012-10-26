@@ -1,0 +1,115 @@
+#!/bin/bash
+# Usage:
+# ./test_total_errors testImagesPath refImagesPath lesionMasksPath transformsGoldFile transformsTestsFile outDir
+
+
+EXPECTED_ARGS=7
+
+if [ $# -lt $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` testImagesPath refImagesPath lesionMasksPath brainMasksPath interictalsGoldFile ictalsGoldfile regTestsFile coregTestsFile outDir [doOutput=0]"
+  exit 65
+fi
+
+testImagesPath=${1%/}
+refImagesPath=${2%/}
+lesionMasksPath=${3%/}
+brainMasksPath=${4%/}
+interictalsGoldFile=$5
+ictalsGoldFile=$6
+regTestFile=$7
+coregTestFile=$8
+outDir=${9%/}
+summaryFile=${10%/}
+#doOutput=${10:-0}
+#doTREMask=${11:-0}
+logLRE="$outDir/LRE.txt"
+logTRE="$outDir/TRE.txt"
+testImages=$(find -L "$testImagesPath/" -name *.hdr | sed -n '/[0-9]\{1,3\}/p' | sort -u)
+
+if [ ! -d "$outDir" ]; then
+  mkdir -p "$outDir"
+fi
+
+if [ -d "$lesionMasksPath" ]; then
+  # Create lesions log file, and put the header
+  echo "# ID  WI_reg    MEDIAN_reg  MAX_reg  |    WI_coreg  MED_coreg MAX_coreg |     WI_tot    MED_tot   MAX_tot  |     #VOXELS    LESION" > "$logLRE"
+  echo "# ID  WI_reg    MEDIAN_reg  MAX_reg  |    WI_coreg  MED_coreg MAX_coreg |     WI_tot    MED_tot   MAX_tot  |     #VOXELS" > "$logTRE"
+fi
+
+
+for testImage in $testImages
+do
+   # Extract case_id without leading zeros
+   case_id=$( basename "$testImage" | sed -e 's/[a-zA-Z0_-]*\([0-9]\{1,2\}\).*/\1/' )
+   
+   # Find reference image in $2
+   refImage=$( ls "$refImagesPath/" | grep "xxRM3dT1x$case_id.hdr")
+
+   if [ -d "$lesionMasksPath" ]; then
+   lesionFiles=$( find "$lesionMasksPath/" -name *focus${case_id#0}.hdr )
+	   if [ ${#lesionFiles[*]} > 0 ]; then
+
+	      # Find all the lesions available for that case_id & launch transform-test
+	      for lesion in $lesionFiles
+		 do
+		 lesionName=$( basename "$lesion" | sed -e 's/^wwmx\(.*\)_T[0-9]\{,3\}\.hdr/\1/' )
+		 eval "vph_siscom_test ${case_id#0} -II \"$testImage\" -I \"$testImage\" -R \"$refImagesPath/$refImage\" -M \"$brainMasksPath/$refImage\" -L \"$lesion\" --bas-tfm \"$interictalsGoldFile\" --act-tfm \"$ictalsGoldFile\" --reg-tfm \"$regTestFile\" --coreg-tfm \"$coregTestFile\" | tr '\n' ' ' >> \"$logLRE\""
+		 echo "   $lesionName" >> "$logLRE"
+	      done
+	   fi
+   fi
+   # Test corners
+   eval "vph_siscom_test ${case_id#0} -II \"$testImage\" -I \"$testImage\" -R \"$refImagesPath/$refImage\" -M \"$brainMasksPath/$refImage\" -L \"\" --bas-tfm \"$interictalsGoldFile\" --act-tfm \"$ictalsGoldFile\" --reg-tfm \"$regTestFile\" --coreg-tfm \"$coregTestFile\" >> \"$logTRE\""
+done
+
+if [ ! -e $summaryFile ]; then
+   touch $summaryFile
+   echo "# VPHTk coregistration tests" >> $summaryFile
+   echo "# Date: "$( date ) >> $summaryFile
+   printf "#\n#%3s%8s%8s%7s %10s %s %8s %8s %8s   %s\n" "ERR" "Rec" "param" "value" "Mean" "SD" "Max" "time" "segs." "filename" >> $summaryFile
+fi
+
+
+function result_file {
+  pattern="%12.3f~%.3f %16.3f  | %8.3f~%.3f %16.3f  | %9.3f~%.3f %15.3f  |\n"
+  e_mean[0]=$( awk ' NR!=1&&NF!=0{s+=$2;c++}END{print s/c}' "$1" )
+  e_meanSD[0]=$( awk ' NR!=1&&NF!=0{s+=($2-mean)^2;c++}END{print sqrt(s/c) }' mean=${e_mean[0]} "$1" )
+  e_max[0]=$( awk ' BEGIN{max=0} NR!=1&&NF!=0{if($4>max)max=$4;}END{print max}' "$1" )
+  e_mean[1]=$( awk ' NR!=1&&NF!=0{s+=$6;c++}END{print s/c}' "$1" )
+  e_meanSD[1]=$( awk ' NR!=1&&NF!=0{s+=($6-mean)^2;c++}END{print sqrt(s/c) }' mean=${e_mean[1]} "$1" )
+  e_max[1]=$( awk ' BEGIN{max=0} NR!=1&&NF!=0{if($8>max)max=$8;}END{print max}' "$1" )
+  e_mean[2]=$( awk ' NR!=1&&NF!=0{s+=$10;c++}END{print s/c}' "$1" )
+  e_meanSD[2]=$( awk ' NR!=1&&NF!=0{s+=($10-mean)^2;c++}END{print sqrt(s/c) }' mean=${e_mean[2]} "$1" )
+  e_max[2]=$( awk ' BEGIN{max=0} NR!=1&&NF!=0{if($12>max)max=$12;}END{print max}' "$1" )
+  echo "#-----------------------------------------------------------------------------------------------------------------------------------------------" >> "$1"
+
+  printf "$pattern"  \
+         "${e_mean[0]}" "${e_meanSD[0]}" "${e_max[0]}" \
+         "${e_mean[1]}" "${e_meanSD[1]}" "${e_max[1]}" \
+         "${e_mean[2]}" "${e_meanSD[2]}" "${e_max[2]}" >> "$1"
+
+  err=$( echo $1 | sed -e 's/.*\(LRE\|TRE\).*/\1/' ); 
+  typ=$( echo $1 | sed -e 's/.*\(smooth\|samples\).*/\1/');
+  rec=$( echo $1 | sed -e 's/.*\(FBP\|OSEM\).*/\1/' );
+  val=$( echo $1 | sed -e "s/\.\/$rec\/${typ}_\([0-9\.]*\)\/$err\.txt/\1/" );
+
+  t_mean=$(cat $(dirname "$coregTestFile")/launch_testing_registrations.log | grep -e '[0-9\.]\{3,8\}user [0-9\.]\{3,8\}system' | sed -e 's/[0-9\.]\{3,8\}user\s[0-9\.]\{3,8\}system\s\([0-9:\.]\{5,8\}\)elapsed\s.*/\1/' | tr '.' ':' | awk ' NR>0{ n=split($1,time,":"); secs=(time[1] * 60 * 60 + time[2] * 60 + time[3]); t_secs+=secs; c++ }END{ print t_secs/c; }')
+  
+  t_readable=$(perl -e "print scalar(localtime($t_mean))" | sed -e 's/.*\([0-9:]\{8\}\).*/\1/' )
+#  h=$t_mean/(60*60)
+#  s=$t_mean-floor($h)*(60*60)
+#  m=$s/60
+#  s=$s-floor($m)*60
+
+  printf "%4s%8s%8s%7s %10.3f %.3f %8.3f %8s %8s   %s\n" "$err" "$rec" "$typ" "$val" "${e_mean[1]}" "${e_meanSD[1]}" "${e_max[1]}" "$t_readable" "$t_mean" "$1" >> "$2"
+}
+
+
+if [ -f "$logLRE" ]; then
+   result_file "$logLRE" "$summaryFile"
+fi
+
+if [ -f "$logTRE" ]; then
+   result_file "$logTRE" "$summaryFile"
+fi

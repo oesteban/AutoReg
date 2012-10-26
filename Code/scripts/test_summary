@@ -1,0 +1,71 @@
+#!/bin/bash
+
+unset vals
+
+dirs=$(find . -name transforms.tfm -exec dirname {} \; | sort -u)
+
+for dir in ${dirs[@]}; do 
+	val=$(echo $dir | sed -e 's/.*_\([0-9\.]*\)$/\1/' )
+	#echo $val
+	param=$(echo $dir | sed -e 's/.*\(smooth\|samples\).*/\1/' )
+	#echo $param
+        rec=$(echo $dir | sed -e "s/.*\/\\(FBP\|OSEM\\)\\([a-zA-Z0-9]*\\)\/${param}_${val}$/\1\2/" )
+	#echo $rec
+        vals=( "${vals[@]}" "$val" )
+	params=( "${params[@]}" "$param" )
+        recs=( "${recs[@]}" "$rec" )
+done
+
+values=$( echo ${vals[@]} | sed 's/ /\n/g' | sort -u -k1,1n)
+pars=$( echo ${params[@]} | sed 's/ /\n/g' | sort -u -k1,1n )
+fams=$( echo ${recs[@]} |  sed 's/ /\n/g'  | sort -u )
+
+#echo $values
+#echo $pars
+#echo $fams
+
+
+echo "# Co-registration tests summary file"
+printf "# Date: %s\n#\n#\n" "$(date)" 
+
+
+printf "#%6s" " "
+for fam in ${fams[@]}; do
+    printf " |  %5s %63s" "$fam" " "
+done
+
+
+printf "\n#%6s" "val"
+
+for fam in ${fams[@]}; do
+    printf " | %7s%7s%7s   * %7s%7s%7s   * %8s  %8s" "tre" "sd" "max" "lre" "sd" "max" "time" "t_sec"
+done
+
+for v in ${values[@]}; do
+    printf "\n%7s" "$v"
+
+    for f in ${fams[@]}; do
+	# echo $v - $f	
+	path=$( echo "${dirs[@]}" | tr ' ' '\n' | grep $v$ | grep $f )
+	dataTRE=$(tail -n 1 $path/TRE.txt | tr '~' ' ')
+
+	# echo $dataTRE
+
+	tre=$( echo $dataTRE |  awk '{ print $5 }')
+        tre_sd=$( echo $dataTRE |  awk '{ print $6 }')
+	tre_max=$( echo $dataTRE |  awk '{ print $7 }')
+
+	dataLRE=$(tail -n 1 $path/LRE.txt | tr '~' ' ')
+	lre=$( echo $dataLRE |  awk '{ print $5 }')
+        lre_sd=$( echo $dataLRE |  awk '{ print $6 }')
+	lre_max=$( echo $dataLRE |  awk '{ print $7 }')
+	
+	t_mean=$(cat $path/launch_testing_registrations.log | grep -e '[0-9\.]\{3,8\}user [0-9\.]\{3,8\}system' | sed -e 's/[0-9\.]\{3,8\}user\s[0-9\.]\{3,8\}system\s\([0-9:\.]\{5,8\}\)elapsed\s.*/\1/' | tr '.' ':' | awk ' NR>0{ n=split($1,time,":"); secs=(time[1] * 60 * 60 + time[2] * 60 + time[3]); t_secs+=secs; c++ }END{ print t_secs/c; }')
+  	t_readable=$(perl -e "print scalar(localtime($t_mean))" | sed -e 's/.*\([0-9:]\{8\}\).*/\1/' )
+
+
+	printf " | %7s%7s%7s   * %7s%7s%7s   * %8s  %8s"  "$tre" "$tre_sd" "$tre_max" "$lre" "$lre_sd" "$lre_max" "$t_readable" "$t_mean"
+    done
+done
+
+printf "\n"

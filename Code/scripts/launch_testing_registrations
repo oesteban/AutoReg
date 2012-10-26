@@ -1,0 +1,37 @@
+#!/bin/bash
+
+fixed_path=${1%/}
+moving_path=${2%/}
+masks_path=${3%/}
+results_path=${4%/}
+
+cases_ids=$(ls $moving_path/*.hdr | sed -n '/[0-9]\{2,3\}/p' | sed -e 's/^.*\([0-9]\{2,3\}\).*$/\1/' | sort -u )
+
+for a in $cases_ids
+  do
+     id=${a#0}
+
+     if [ ! -d "$results_path/$a" ]; then
+       mkdir -p "$results_path/$a"
+     fi
+
+     mri_name=$(ls $fixed_path/*.hdr | grep -i "x$id\." )
+     mask_name=$(ls $masks_path/*.hdr | grep -i "x$id\." )
+     bas_name=$(ls $moving_path/*.hdr | grep -i "$a")
+
+     log_file="$results_path/launch_testing_registrations.log"
+
+     eval "echo \"Case $a:\" >>  \"$log_file\""
+     eval "/usr/bin/time -o \"$log_file\" -a ./autoreg \"$mri_name\" \"$bas_name\" \"$mask_name\" \"$results_path/$a/\""
+
+done
+
+for i in $results_path/*/tforms.txt
+   do 
+   
+
+   tfPath=$(dirname $i)
+   tfId=$( echo "$tfPath" | sed -e 's/^.*\([0-9]\{2,3\}\).*$/\1/' )
+  
+   eval "cat \"$i\" | sed -e \"s/\\(^# Transform \\)\\([0-9]\\)/\\1${tfId}/\" >> \"$results_path/transforms.tfm\""
+done

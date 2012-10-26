@@ -1,0 +1,104 @@
+#!/bin/bash
+#
+# Script for batch co-registration
+# V.2 - All files are in the same folder
+#     - vtk extension
+# cli: launch_testing_registrations fixed_path moving_path masks_path results_path
+
+
+fixed_path=${1%/}
+moving_path=${2%/}
+masks_path=${3%/}
+results_path=${4%/}
+#parameter="${5} ${6}"
+
+unset mov_paths
+unset s_paths
+
+files=$(find -L $moving_path -regex ".*\.\(hdr\|vtk\|nii\|nii.gz\)")
+
+for f in $files
+do 
+	dir=$( dirname $f )
+	s_paths=$s_paths$dir$'\n'
+done
+
+s_paths=$( echo "$s_paths" | sort -u )
+mov_paths=( $s_paths )
+
+for file in $files
+do
+	id=$( basename "$file" | sed -e 's/rec_\(bas\|act\)\([0-9]\{2\}\).*/\2/')
+	id=${id##0}
+	id_print=$( printf '%02d' $id )
+	res_path="$results_path/$( dirname $file )"
+	out_prefix="${res_path}/${id_print}_"
+
+	if [ ! -d $res_path ]; then
+		dir_cmd="mkdir -p $res_path"
+		eval $dir_cmd
+	fi
+	mri_name=$(find $fixed_path/ -iregex ".*\(hdr\|vtk\|nii\|nii.gz\)" -printf "$fixed_path/%f\n" | grep $id_print ) 
+	mask_name=$(find $masks_path/ -iregex ".*\(hdr\|vtk\|nii\|nii.gz\)" -printf "$masks_path/%f\n" | grep $id_print ) 
+ 	log_file="$res_path/launch_testing_registrations.log"
+ 
+	command="/usr/bin/time -o \"$log_file\" -a autoreg \"$mri_name\" \"$file\" -F \"$mask_name\" -o \"$out_prefix\" --use-vph --use-RATS --output-all"
+
+#	echo $command
+	echo "Case $id_print:" >>  "$log_file"
+	echo $command >> "$log_file"
+	eval $command
+done
+
+for pth in ${mov_paths[@]}
+do
+	complete_pth=$results_path/$pth
+	tf_file=$complete_pth/transforms.tfm
+
+	if [ -e $tf_file ]; then rm $tf_file; fi
+
+	for file in $(find -L $complete_pth -name *tforms.txt | sort -u )
+	   do 
+	   tfPath=$(dirname $file)
+	   tfId=$( echo "$file" | sed -e 's/^.*\([0-9]\{2,3\}\).*$/\1/' )
+	   cmd="cat \"$file\" | sed -e \"s/\\(^# Transform \\)\\([0-9]\\)/\\1${tfId}/\" >> \"$tf_file\""
+	   eval $cmd
+	done
+
+	if [ -e $tf_file ]
+	then
+		# testImagesPath refImagesPath lesionMasksPath brainMasksPath interictalsGoldFile ictalsGoldfile regTestsFile coregTestsFile outDir
+		err_cmd="./launch_total_tests \"$moving_path/\" \"$fixed_path/\" \"./rois/\" \"$masks_path/\" \"./transforms/interictals.tfm\" \"./transforms/ictals.tfm\" \"./transforms/110311FBPRegister.tfm\" \"$tf_file\" \"$complete_pth/\""
+		eval $err_cmd
+	fi
+done
+
+# all_cases=$(find -L $fixed_path -regex ".*\.\(hdr\|vtk\|nii\|nii.gz\)" | grep -Eo '[0-9]+\.' | tr -d '.' | sort -u -k1,1n )
+# for id in $all_cases
+#   do
+#      id_print=$( printf '%02d' $id )
+#      res_path="$results_path/${id_print}_"
+# 
+#      if [ ! -d $res_path ]; then
+#        eval "mkdir -p $res_path"
+#      fi
+# 
+#      mri_name=$(ls $fixed_path/xxRM3dT1x$id.* | grep -Ei "(hdr|vtk|nii|nii.gz)" )
+#      mask_name=$(ls $masks_path/* | grep $id | grep -Ei "(hdr|vtk|nii|nii.gz)" )
+#      bas_name=$(ls $moving_path/* | grep $id | grep -Ei "(hdr|vtk|nii|nii.gz)" | grep "$id_print\." )
+# 
+#      log_file="$results_path/launch_testing_registrations.log"
+# 
+# #     eval "echo \"Case $id_print:\" >>  \"$log_file\""
+# #     command="/usr/bin/time -o \"$log_file\" -a autoreg \"$mri_name\" \"$bas_name\" -F \"$mask_name\" -o \"$res_path/\" -l 2 $parameter --use-adapt-histograms --no-output-moving"
+#      command="/usr/bin/time -o \"$log_file\" -a autoreg \"$mri_name\" \"$bas_name\" -F \"$mask_name\" -o \"$res_path\" --use-vph"
+#      echo $command
+# 
+# 
+# #     echo $command >> "$log_file"
+# #     eval $command
+# 
+# done
+
+
+

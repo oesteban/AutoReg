@@ -1,0 +1,16 @@
+#!/bin/bash
+
+images_path=${1%/}
+results_path=${2%/}
+
+if [ ! -d "$results_path" ]; then
+  mkdir -p "$results_path"
+fi
+
+for case_img in $images_path/*.hdr
+  do
+    case_id=$(echo "$case_img" | sed -e 's/.*\([0-9]\{2\}\).*$/\1/' )
+    
+    command="./maskSpect TSpect2.hdr $case_img MSpect2.hdr $case_id-ictal-mask.hdr $results_path/"
+    eval $command
+done

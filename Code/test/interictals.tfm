@@ -1,0 +1,200 @@
+#Insight Transform File V1.0
+# Transform 1
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.00970198 0.0550186 -0.104824 -7.5 -1.875 9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 2
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.054598 -0.0116099 0.0350305 0 -11.25 12
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 3
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.220665 -0.0155338 -0.173856 -9.375 -1.875 0
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 4
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.166508 -0.00583682 -0.0700042 3.75 9.375 0
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 5
+Transform: Euler3DTransform_double_3_3
+Parameters: 0 -0 -0.174533 -1.875 1.875 9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 6
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.165016 -0.0232782 0.0341515 1.875 -1.875 12
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 7
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0619021 0.21572 0.142228 -9.375 -3.75 12
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 8
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.0984673 -0.0524219 0.10573 -3.75 -1.875 3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 9
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.158593 -0.0517047 -0.071424 1.875 9.375 -3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 10
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.273544 0.029046 -0.00157958 -7.5 1.875 9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 11
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.0558832 0.0968085 -0.105776 3.75 -9.375 -3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 12
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0517585 -0.0209193 -0.000211602 -9.375 -11.25 12
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 13
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.164122 -0.029046 -0.105657 -5.625 -7.5 0
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 14
+Transform: Euler3DTransform_double_3_3
+Parameters: 0 -0 -0.174533 0 -1.875 9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 15
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.221186 1.36346e-17 0.139626 -7.5 9.375 12
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 16
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0191074 0.0524958 0.139822 5.625 -5.625 -3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 17
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.11425 0.256624 -0.0640957 -3.75 5.625 -9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 18
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.0524555 -0.0190993 0.070009 -9.375 5.625 9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 19
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.166508 -0.00583682 0.0696221 -9.375 -9.375 3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 20
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0135161 0.0542071 0.139769 -1.875 -11.25 0
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 21
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.054969 0.00969653 0.0350108 9.375 0 6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 22
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.152436 -0.0680775 0.0328692 1.875 -11.25 6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 23
+Transform: Euler3DTransform_double_3_3
+Parameters: 0 -0 0.0349066 -7.5 5.625 0
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 24
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.110344 0.0155338 0.104384 -9.375 5.625 3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 25
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.0244883 0.050209 -0.174773 11.25 3.75 9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 26
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.048951 0.277151 -0.107357 7.5 -11.25 -6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 27
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0945989 -0.059179 0.0687177 -5.625 1.875 -6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 28
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.0924905 -0.0624523 -0.138496 5.625 7.5 6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 29
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.156729 0.0572326 0.106482 1.875 -5.625 -9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 30
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.156472 0.232424 -0.132509 11.25 -7.5 -9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 31
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.00390464 0.111775 0.104635 11.25 -7.5 -6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 32
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0945989 0.059179 -0.0338111 3.75 -11.25 6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 33
+Transform: Euler3DTransform_double_3_3
+Parameters: 0 -0 0.139626 -9.375 -3.75 -9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 34
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0555101 -0.00583682 -0.174596 -5.625 -5.625 3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 35
+Transform: Euler3DTransform_double_3_3
+Parameters: 0 -0 0.0349066 5.625 7.5 12
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 36
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.0585896 0.275227 -0.066678 -7.5 5.625 6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 37
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.0270603 0.108508 0.104147 7.5 0 9
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 38
+Transform: Euler3DTransform_double_3_3
+Parameters: 0 -0 0.0349066 1.875 5.625 6
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 39
+Transform: Euler3DTransform_double_3_3
+Parameters: -0.0116944 0.111228 -0.13988 -5.625 1.875 -3
+FixedParameters: 119.531 -119.531 86.25
+#Insight Transform File V1.0
+# Transform 40
+Transform: Euler3DTransform_double_3_3
+Parameters: 0.11425 0.256624 0.28497 -3.75 5.625 -9
+FixedParameters: 119.531 -119.531 86.25

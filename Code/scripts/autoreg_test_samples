@@ -1,0 +1,32 @@
+#!/bin/bash
+# Example command
+# samples=( 50000 20000 10000 7000 5000 2000 ); for p in ${samples[@]}; do command="autoreg_test_samples ./sim/ ./results/20110427-autoreg-smoothing/ $p"; echo $command; eval "$command"; done;
+
+simulations_path=$(readlink -f $1)
+out_path=${2%/}
+sim_flds=$(find -L "$simulations_path" -name "*.hdr" -exec dirname "{}" \; | sort -u)
+i=$3
+
+#sm=( 50000 20000 10000 7000 5000 2000 )
+
+#echo "Folders: $sim_flds"
+
+for sim_set in $sim_flds; do
+    sim_subset=${sim_set#$simulations_path}
+
+    if [ -n "$sim_subset" ]; then
+	if [ ${sim_subset:0:1} = '/' ];  then
+          sim_subset=${sim_subset:1}
+	fi
+    fi
+
+    output_fld=$out_path/$sim_subset
+    
+#    for i in ${sm[@]}; do 
+        test_out=${output_fld%/}/samples_$i
+	
+    	eval "mkdir -p $test_out";
+    	eval "autoreg_testall RMs/ $sim_set msk/ $test_out --mattes-samples $i";
+	eval "test_total_errors \"$sim_set\" RMs/ les/ msk/ tfm/interictals.tfm tfm/ictals.tfm tfm/register.tfm \"$test_out/transforms.tfm\" \"$test_out\""
+#    done;
+done;

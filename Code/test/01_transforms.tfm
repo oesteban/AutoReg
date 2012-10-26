@@ -1,0 +1,10 @@
+#Insight Transform File V1.0
+# Co-register Transform 01
+Transform: VersorRigid3DTransform_double_3_3
+Parameters: 0.00488379 -0.0289885 0.0544195 96.9226 -87.7865 -5.87373
+FixedParameters: 121.988 -103.939 83.1682
+#Insight Transform File V1.0
+# Register Transform 01
+Transform: VersorRigid3DTransform_double_3_3
+Parameters: 0.0299894 -0.0288971 0.0904399 63.5791 -16.646 -38.3839
+FixedParameters: 0 0 0

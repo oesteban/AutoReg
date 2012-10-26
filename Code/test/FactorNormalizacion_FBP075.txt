@@ -1,0 +1,84 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 1: 	1.016213 	 0.987229 	 468.070343 	 437.304440 	 0.544790 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 2: 	1.007135 	 0.988876 	 442.798584 	 389.397523 	 0.575883 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 3: 	1.009256 	 0.982436 	 436.233765 	 410.864263 	 0.584549 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 4: 	0.995952 	 0.969465 	 465.065582 	 441.021270 	 0.548310 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 5: 	1.024867 	 0.996446 	 428.730103 	 396.817298 	 0.594780 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 6: 	0.999873 	 0.972054 	 455.273193 	 421.441199 	 0.560103 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 7: 	1.007784 	 0.982825 	 526.132629 	 424.494252 	 0.484669 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 8: 	1.038675 	 1.004545 	 482.028503 	 441.560501 	 0.529014 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 9: 	1.002110 	 0.985266 	 468.686218 	 457.224742 	 0.544074 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 10: 	1.012835 	 0.988441 	 468.656403 	 415.492056 	 0.544109 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 11: 	1.039331 	 1.004230 	 472.600281 	 440.261300 	 0.539568 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 12: 	1.014455 	 0.992754 	 481.322906 	 429.204052 	 0.529790 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 13: 	0.994515 	 0.974595 	 428.671234 	 419.189712 	 0.594861 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 14: 	1.052243 	 1.014423 	 487.271210 	 457.401650 	 0.523323 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 15: 	1.006818 	 0.987898 	 476.888367 	 437.851652 	 0.534716 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 16: 	1.024342 	 0.988595 	 563.679504 	 432.366967 	 0.452385 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 17: 	1.021620 	 0.993681 	 479.230713 	 369.863369 	 0.532103 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 18: 	1.021341 	 0.993339 	 460.830658 	 419.478629 	 0.553349 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 19: 	0.984274 	 0.959972 	 619.547607 	 430.921302 	 0.411591 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 20: 	1.026130 	 0.995948 	 489.088348 	 427.274529 	 0.521378 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 21: 	1.010790 	 0.982106 	 447.959991 	 391.767894 	 0.569247 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 22: 	1.000951 	 0.974920 	 508.213898 	 441.245539 	 0.501757 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 23: 	1.032065 	 0.999519 	 450.946259 	 446.691143 	 0.565478 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 24: 	1.013643 	 0.985946 	 654.843079 	 440.856846 	 0.389406 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 25: 	1.003187 	 0.979713 	 450.319153 	 417.620221 	 0.566265 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 26: 	1.019030 	 0.994606 	 470.868652 	 440.691458 	 0.541552 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 27: 	1.007968 	 0.984386 	 477.570557 	 437.897089 	 0.533953 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 28: 	0.986841 	 0.961101 	 503.050354 	 450.162888 	 0.506908 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 29: 	0.991503 	 0.970973 	 488.114227 	 453.414182 	 0.522419 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 30: 	0.992063 	 0.974712 	 486.627563 	 450.758497 	 0.524015 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 31: 	1.007125 	 0.986017 	 493.528290 	 457.658512 	 0.516688 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 32: 	0.987904 	 0.970757 	 485.869293 	 445.062498 	 0.524833 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 33: 	1.040479 	 1.000740 	 481.131744 	 411.080251 	 0.530000 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 34: 	1.036469 	 0.999402 	 481.532257 	 437.474567 	 0.529560 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 35: 	1.029976 	 1.011570 	 501.254303 	 448.598023 	 0.508724 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 36: 	0.989683 	 0.972420 	 500.337677 	 454.005783 	 0.509656 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 37: 	1.007318 	 0.984450 	 485.580872 	 437.718143 	 0.525144 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 38: 	1.026202 	 1.002742 	 446.230316 	 429.481948 	 0.571454 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 39: 	1.004400 	 0.978072 	 359.778656 	 330.578393 	 0.708769 
+# Patient ID :: 	 CountsFactor 	 NormalizationFactor 	 Maximum I Normalizaded 	 Maximum II Normalizaded 	 FactorDouble2Char 
+# Patient ID 40: 	1.016816 	 0.990817 	 441.620148 	 399.474408 	 0.577419 
