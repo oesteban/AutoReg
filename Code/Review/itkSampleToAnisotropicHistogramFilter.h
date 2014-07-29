@@ -103,27 +103,27 @@ public:
    * histogram size by value. This macro declares the methods
    * SetHistogramSize(), SetHistogramSizeInput(), GetHistogramSizeInput().
    */
-  itkSetDecoratedInputMacro( HistogramSize, HistogramSizeType, 1 );
+  itkSetDecoratedInputMacro( HistogramSize, HistogramSizeType );
 
   /** Methods for setting and getting the Marginal scale value.  The marginal
    * scale is used when the type of the measurement vector componets are of
    * integer type. */
-  itkSetDecoratedInputMacro( MarginalScale, HistogramMeasurementType, 2 );
+  itkSetDecoratedInputMacro( MarginalScale, HistogramMeasurementType );
 
   /** Methods for setting and getting the Minimum and Maximum values of the
    * histogram bins. */
-  itkSetDecoratedInputMacro( HistogramBinMinimum, HistogramMeasurementVectorType, 3 );
-  itkSetDecoratedInputMacro( HistogramBinMaximum, HistogramMeasurementVectorType, 4 );
+  itkSetDecoratedInputMacro( HistogramBinMinimum, HistogramMeasurementVectorType );
+  itkSetDecoratedInputMacro( HistogramBinMaximum, HistogramMeasurementVectorType );
 
   /** Methods for setting and getting the boolean flag that defines whether the
    * minimum and maximum of the histogram are going to be computed
    * automatically from the values of the sample */
-  itkSetDecoratedInputMacro( AutoMinimumMaximum, bool, 5 );
+  itkSetDecoratedInputMacro( AutoMinimumMaximum, bool );
 
   /** Method for setting the density factor **/
-  itkSetDecoratedInputMacro( PDFDensityFactor, unsigned int, 6 );
+  itkSetDecoratedInputMacro( PDFDensityFactor, unsigned int );
 
-  itkSetDecoratedInputMacro( MaxEstimatorIterations, unsigned int, 7 );
+  itkSetDecoratedInputMacro( MaxEstimatorIterations, unsigned int );
 
 
   /** Method that facilitates the use of this filter in the internal

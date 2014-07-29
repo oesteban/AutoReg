@@ -38,7 +38,7 @@
 #include <itkCastImageFilter.h>
 #include <itkIntensityWindowingImageFilter.h>
 #include <itkStatisticsImageFilter.h>
-#include <itkOtsuThresholdImageCalculator.h>
+#include <itkOtsuThresholdImageFilter.h>
 #include <itkAdaptativeBiningThresholdImageCalculator.h>
 #include <itkQuantileThresholdImageCalculator.h>
 #include <itkDiscreteGaussianImageFilter.h>
